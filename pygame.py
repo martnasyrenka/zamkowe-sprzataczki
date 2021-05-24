@@ -6,6 +6,7 @@ okno_gry.geometry("350x300")
 okno_gry.mainloop()
 
 #wczytanie obrazu tła
-background_image=tk.PhotoImage('lava.jpg')
-background_label=tk.Label(parent, image=background_image)
-background_label.place=(x=0, y=0, relwidth=1, relheight=1)
+plotno.pack()
+background_image=Image.open('lava.jpg')
+background_imageTk=ImageTk.Photoimage(background_image)
+plotno.create_image(350, 200,image=background_imageTk)
