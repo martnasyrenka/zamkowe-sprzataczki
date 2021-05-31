@@ -1,5 +1,18 @@
-#okono gry w gui:
+'''___________________________________________________________________________
+Wszystkie importy'''
+
 from  tkinter import
+from tkinter import messagebox
+
+'''___________________________________________________________________________
+Wszystkie funkcje'''
+
+def przycisk_instrukcja():
+    messagebox.showinfo("Instrukcja gry","Gra zamkowe sprzataczki dzieli sie na 3 etapy:\n W pierwszym etapie trzeba ułożyć puzzle w taki sposób aby tworzyły spójną ścieżkę. \n Następnie poruszając się za pomocą strzałek należy przejść postacią po ścieżce\n przez zamek do miejsca docelowego, zanim zapadnie się podłoga.")
+
+
+'''___________________________________________________________________________
+okono gry'''
 okno_gry = Tk()
 okno_gry.title("Gra zamkowe sprzataczki")
 okno_gry.geometry("350x300")
@@ -15,6 +28,11 @@ plotno.create_image(350, 200,image=background_imageTk)
 protag_image=Image.open('protag.png')
 protag_imageTk=ImageTk.Photoimage(protag_image)
 plotno.create_image(20, 8,image=protag_imageTk)
+
+#wyswietlenie okienka z instrukcje gry
+
+instrukcja = Button(okno_gry, text = "Instrukcja gry", command =  przycisk_instrukcja)
+instrukcja..pack(side=LEFT)
 
 
 okno_gry.mainloop()
