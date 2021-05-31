@@ -20,7 +20,9 @@ okno_gry.geometry("350x300")
 
 #wczytanie obrazu tła
 #plotno.pack()
-background_imageTk=PhotoImage(file="protag.png")
+tlo_zamek=PhotoImage(file="castle.png")
+tlo=Label(okno_gry, image=tlo_zamek)
+tlo.place(x=0,y=0)
 #plotno.create_image(350, 200,image=background_imageTk)
 
 #wczytanie grafiki protagonisty gry
