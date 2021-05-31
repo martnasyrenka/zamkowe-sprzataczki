@@ -15,20 +15,29 @@ def przycisk_instrukcja():
 okono gry'''
 okno_gry = Tk()
 okno_gry.title("Gra zamkowe sprzataczki")
-okno_gry.geometry("350x300")
+okno_gry.geometry("600x600")
 
 
 #wczytanie obrazu tła
-#plotno.pack()
-tlo_zamek=PhotoImage(file="castle.png")
+
+tlo_zamek=PhotoImage(file="graphics/background/castle.png")
 tlo=Label(okno_gry, image=tlo_zamek)
 tlo.place(x=0,y=0)
-#plotno.create_image(350, 200,image=background_imageTk)
 
-#wczytanie grafiki protagonisty gry
-#protag_image=Image.open('protag.png')
-#protag_imageTk=PhotoImage(protag_image)
-#plotno.create_image(20, 8,image=protag_imageTk)
+
+puzzle_prosto_zdj=PhotoImage(file='graphics/path/prosto.png')
+puzzle_prosto=Label(okno_gry, image=puzzle_prosto_zdj)
+puzzle_prosto.place(x=0, y=500)
+
+puzzle_lewodol_zdj=PhotoImage(file='graphics/path/lewo_dol.png')
+puzzle_lewodol=Label(okno_gry, image=puzzle_lewodol_zdj)
+puzzle_lewodol.place(x=60, y=500)
+
+protag_zdj=PhotoImage(file='graphics/protagonist/protag.png')
+protag=Label(okno_gry, image=protag_zdj)
+protag.place(x=200, y=400)
+
+
 
 #wyswietlenie okienka z instrukcje gry
 
