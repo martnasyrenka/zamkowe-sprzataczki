@@ -84,10 +84,8 @@ while running:
         #moja grafomania kodowa w runningu  
         if event.type == pygame.KEYDOWN:
           move_value += 1
-        if collision:           
-          move_value += 0
         if event.type == pygame.KEYUP:
-          move_value += 0
+          move_value += 1  #albo 0? trochę nie rozumiem, co robi keyup xDD
 
 
     collision = collisionTrue(protagX,protagY,roomX,roomY)
