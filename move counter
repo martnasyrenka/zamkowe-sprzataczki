@@ -85,7 +85,7 @@ while running:
         if event.type == pygame.KEYDOWN:
           move_value += 1
         if collision:           
-          move_value -= 1
+          move_value += 0
         if event.type == pygame.KEYUP:
           move_value += 0
 
