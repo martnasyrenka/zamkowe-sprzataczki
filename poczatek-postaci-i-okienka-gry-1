@@ -21,7 +21,7 @@ protagY = 340
 protagX_change = 0
 protagY_change = 0
 
-
+pygame.font.init()
 font = pygame.font.Font('freesansbold.ttf', 32)
 
 scoreX = 20
