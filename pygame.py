@@ -1,7 +1,7 @@
 '''___________________________________________________________________________
 Wszystkie importy'''
 import pygame
-from game.digit_sqr import DigitSqr
+#from game.digit_sqr import DigitSqr
 from  tkinter import *
 from tkinter import messagebox
 import random
@@ -20,6 +20,7 @@ okno_gry = Tk()
 okno_gry.title("Gra zamkowe sprzataczki")
 okno_gry.geometry("600x600")
 
+
 '''___________________________________________________________________________
 wczytywanie grafiki'''
 
@@ -28,12 +29,26 @@ tlo_zamek=PhotoImage(file="graphics/background/castle.png")
 tlo=Label(okno_gry, image=tlo_zamek)
 tlo.place(x=0,y=0)
 
-
+selected=-1
 class Puzzel:
-    def __init__(self,puzzel, x, y):
-        self.puzzel=puzzel
+    def __init__(self,name, x, y, numer):
+        self.name=name
+        zdj=PhotoImage(file='graphics/path/'+name+'.png')
+        self.puzzel=Label(okno_gry, image=zdj)
+        self.puzzel.configure(image=zdj)
+        self.puzzel.image = zdj
         self.place(x,y)
+        self.puzzel.bind("<ButtonRelease-1>", lambda event: self.click())
+        self.numer=numer
+        
 
+    def click(self):
+        print('super', self.x, self.y)
+        zdj=PhotoImage(file='graphics/path/'+self.name+'_pressed.png')
+        self.puzzel.configure(image=zdj)
+        self.puzzel.image = zdj
+        selected=self.numer
+        puzzle.zaznacz(self.numer)
     def place(self, x, y):
         self.x=x
         self.y=y
@@ -42,39 +57,58 @@ class Puzzel:
         self.x+=x
         self.y+=y
         self.puzzel.place(x=self.x*50, y=self.y*50)
+    def hoover(self, x, y):
+        if self.x==x and self.y==y:
+            zdj=PhotoImage(file='graphics/path/prosto_pressed.png')
+            self.puzzel.configure(image=zdj)
+            self.puzzel.image = zdj
+        else:
+            zdj=PhotoImage(file='graphics/path/prosto.png')
+            self.puzzel.configure(image=zdj)
+            self.puzzel.image = zdj
 
     
 
 class Puzzle:
     def __init__(self):
         self.p=[]
-        self.selected=1
+        selected=1
+        
 
     def append(self, puzzel):
         self.p.append(puzzel)
 
     def zaznacz(self, numer):
-        self.selected=numer
+        selected=numer
+    
+    
 
     def przesun_w_prawo(self):
-        if self.selected!=-1:
+        if selected!=-1:
             print('przesun_w_prawo()')
-            self.p[self.selected].move(1,0)
+            self.p[selected].move(1,0)
 
     def przesun_w_lewo(self):
-        if self.selected!=-1:
+        if selected!=-1:
             print('przesun_w_lewo()')
-            self.p[self.selected].move(-1,0)
+            self.p[selected].move(-1,0)
 
     def przesun_w_dol(self):
-        if self.selected!=-1:
+        if selected!=-1:
             print('przesun_w_dol()')
-            self.p[self.selected].move(0,-1)
+            self.p[selected].move(0,-1)
 
     def przesun_w_gore(self):
-        if self.selected!=-1:
+        if selected!=-1:
             print('przesun_w_gore()')
-            self.p[self.selected].move(0,1)
+            self.p[selected].move(0,1)
+    
+    def hoover(self, x, y):
+        x0=x//50
+        y0=y//50
+        for i in range(len(self.p)):
+            self.p[i].hoover(x0, y0)
+
     
 def keypress(event):
     if event.char == 'd':
@@ -93,38 +127,19 @@ puzzle=Puzzle()
 puzzle.zaznacz(2)
 
 #wczytanie obrazów puzzli
-puzzle_prawodol_zdj=PhotoImage(file='graphics/path/prawodol.png')
-puzzle_prawodol=Label(okno_gry, image=puzzle_prawodol_zdj)
-puzzle_prawodol.place(x=200, y=100)
-puzzle.append(Puzzel(puzzle_prawodol, 4, 2))
-
-puzzle_prawogora_zdj=PhotoImage(file='graphics/path/prawogora.png')
-puzzle_prawogora=Label(okno_gry, image=puzzle_prawogora_zdj)
-puzzle_prawogora.place(x=200, y=150)
-puzzle.append(Puzzel(puzzle_prawogora, 4, 3))
-
-puzzle_lewogora_zdj=PhotoImage(file='graphics/path/lewogora.png')
-puzzle_lewogora=Label(okno_gry, image=puzzle_lewogora_zdj)
-puzzle_lewogora.place(x=200, y=200)
-puzzle.append(Puzzel(puzzle_lewogora, 4, 4))
-
-puzzle_prosto_zdj=PhotoImage(file='graphics/path/prosto.png')
-puzzle_prosto=Label(okno_gry, image=puzzle_prosto_zdj)
-puzzle_prosto.place(x=200, y=250)
-puzzle.append(Puzzel(puzzle_prosto, 4, 5))
-
-
-puzzle_lewodol_zdj=PhotoImage(file='graphics/path/lewodol.png')
-puzzle_lewodol=Label(okno_gry, image=puzzle_lewodol_zdj)
-puzzle_lewodol.place(x=200, y=300)
-puzzle.append(Puzzel(puzzle_lewodol, 4, 6))
+puzzle.append(Puzzel('prawodol', 4, 2,0))
+puzzle.append(Puzzel('prawogora', 4, 3,1))
+puzzle.append(Puzzel('lewogora', 4, 4,2))
+puzzle.append(Puzzel('prosto', 4, 5,3))
+puzzle.append(Puzzel('lewodol', 4, 6,4))
 
 
 #pobieranie współrzędnych kursora myszy
 def motion(event):
-    if do_capture:
-        x, y = event.x, event.y
-        print('{}, {}'.format(x, y))
+ #   if do_capture:
+    x, y = event.x_root, event.y
+    print('{}, {}'.format(x, y))
+    #puzzle.hoover(x,y)
 okno_gry.bind('<Motion>', motion)
 
 okno_gry.bind('d',keypress)
@@ -133,61 +148,29 @@ okno_gry.bind('w', keypress)
 okno_gry.bind('s', keypress)
 # wczytanie obrazów puzzli i stworzenie duszkow z poszczegolnymi puzzlami
 
-puzzle_prawodol_zdj=PhotoImage(file='graphics/path/prawo_dol.png')
-puzzle_prawodol=Label(okno_gry, image=puzzle_prawodol_zdj)
-puzzle_prawodol.place(x=190, y=100)
+#puzzle_prawodol_zdj=PhotoImage(file='graphics/path/prawodol.png')
+#puzzle_prawodol=Label(okno_gry, image=puzzle_prawodol_zdj)
+#puzzle_prawodol.place(x=190, y=100)
 
 
 def capture(flag):
     global do_capture
     do_capture = flag
 
-def choose_puzzle():
-    puzzle_prostoselected_zdj=PhotoImage(file='graphics/path/prosto_selected.png')
-    puzzle_prosto.configure(image=puzzle_prostoselected_zdj)
-    puzzle_prosto.image = puzzle_prostoselected_zdj
+#def choose_puzzle():
+    #puzzle_prostoselected_zdj=PhotoImage(file='graphics/path/prosto_selected.png')
+    #puzzle_prosto.configure(image=puzzle_prostoselected_zdj)
+    #puzzle_prosto.image = puzzle_prostoselected_zdj
 
-    puzzle_prawodolselected_zdj=PhotoImage(file='graphics/path/prawodol_selected.png')
-    puzzle_prawodol.configure(image=puzzle_prawodolselected_zdj)
-    puzzle_prawodol.image = puzzle_prawodolselected_zdj
+#def press_puzzle():
+ #   puzzle_prostopressed_zdj=PhotoImage(file='graphics/path/prosto_pressed.png')
+  #  puzzle_prosto.configure(image=puzzle_prostopressed_zdj)
+   # puzzle_prosto.image = puzzle_prostopressed_zdj
 
-    puzzle_prawogoraselected_zdj=PhotoImage(file='graphics/path/prawogora_selected.png')
-    puzzle_prawogora.configure(image=puzzle_prawogoraselected_zdj)
-    puzzle_prawogora.image = puzzle_prawogoraselected_zdj
-
-    puzzle_lewodolselected_zdj=PhotoImage(file='graphics/path/lewodol_selected.png')
-    puzzle_lewodol.configure(image=puzzle_lewodolselected_zdj)
-    puzzle_lewodol.image = puzzle_lewodolselected_zdj
-
-    puzzle_lewogoraselected_zdj=PhotoImage(file='graphics/path/lewogora_selected.png')
-    puzzle_lewogora.configure(image=puzzle_lewogoraselected_zdj)
-    puzzle_lewogora.image = puzzle_lewogoraselected_zdj
-
-
-def press_puzzle():
-    puzzle_prostopressed_zdj=PhotoImage(file='graphics/path/prosto_pressed.png')
-    puzzle_prosto.configure(image=puzzle_prostopressed_zdj)
-    puzzle_prosto.image = puzzle_prostopressed_zdj
-
-    puzzle_prawogorapressed_zdj=PhotoImage(file='graphics/path/prawogora_pressed.png')
-    puzzle_prawogora.configure(image=puzzle_prawogorapressed_zdj)
-    puzzle_prawogora.image = puzzle_prawogorapressed_zdj
-
-    puzzle_prawodolpressed_zdj=PhotoImage(file='graphics/path/prawodol_pressed.png')
-    puzzle_prawodol.configure(image=puzzle_prawodolpressed_zdj)
-    puzzle_prawodol.image = puzzle_prawodolpressed_zdj
-
-    puzzle_lewogorapressed_zdj=PhotoImage(file='graphics/path/lewogora_pressed.png')
-    puzzle_lewogora.configure(image=puzzle_lewogorapressed_zdj)
-    puzzle_lewogora.image = puzzle_lewogorapressed_zdj
-
-    puzzle_lewodolpressed_zdj=PhotoImage(file='graphics/path/lewodol_pressed.png')
-    puzzle_lewodol.configure(image=puzzle_lewodolpressed_zdj)
-    puzzle_lewodol.image = puzzle_lewodolpressed_zdj
-
+    
 capture(False)
-okno_gry.bind("<ButtonPress-1>", lambda event: choose_puzzle())
-okno_gry.bind("<ButtonRelease-1>", lambda event: capture(False))
+#okno_gry.bind("<ButtonPress-1>", lambda event: choose_puzzle())
+#okno_gry.bind("<ButtonRelease-1>", lambda event: capture(False))
 
 # wczytanie grafiki protagonsty
 protag_zdj=PhotoImage(file='graphics/protagonist/protag.png')
@@ -214,18 +197,18 @@ class tworzenie_puzzli:
 
         return self.numery_puzzli
 
-    def wyswietl_puzzle(self,numery_puzzli):
-        zmienna_x = 1
-        zmienna_y = 1
-        puzzle = []
-        for numer_puzzla in numery_puzzli:
-            puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
-            counter_x += 1
-            if zmienna_x % 4 == 0:
-                zmienna_x = 1
-                zmienna_y += 1
+    #def wyswietl_puzzle(self,numery_puzzli):
+        #zmienna_x = 1
+        #zmienna_y = 1
+        #puzzle = []
+        #for numer_puzzla in numery_puzzli:
+         #   puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
+          #  counter_x += 1
+           # if zmienna_x % 4 == 0:
+            #    zmienna_x = 1
+             #   zmienna_y += 1
 
-        return puzzle
+        #return puzzle
 
 
 
