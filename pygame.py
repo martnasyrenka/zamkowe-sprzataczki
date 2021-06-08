@@ -1,7 +1,7 @@
 '''___________________________________________________________________________
 Wszystkie importy'''
 import pygame
-#from game.digit_sqr import DigitSqr
+from game.digit_sqr import DigitSqr
 from  tkinter import *
 from tkinter import messagebox
 import random
@@ -197,18 +197,18 @@ class tworzenie_puzzli:
 
         return self.numery_puzzli
 
-    #def wyswietl_puzzle(self,numery_puzzli):
-        #zmienna_x = 1
-        #zmienna_y = 1
-        #puzzle = []
-        #for numer_puzzla in numery_puzzli:
-         #   puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
-          #  counter_x += 1
-           # if zmienna_x % 4 == 0:
-            #    zmienna_x = 1
-             #   zmienna_y += 1
+    def wyswietl_puzzle(self,numery_puzzli):
+        zmienna_x = 1
+        zmienna_y = 1
+        puzzle = []
+        for numer_puzzla in numery_puzzli:
+           puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
+           counter_x += 1
+           if zmienna_x % 4 == 0:
+               zmienna_x = 1
+               zmienna_y += 1
 
-        #return puzzle
+        return puzzle
 
 
 
