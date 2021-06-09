@@ -1,7 +1,6 @@
 '''___________________________________________________________________________
 Wszystkie importy'''
 import pygame
-from game.digit_sqr import DigitSqr
 from  tkinter import *
 from tkinter import messagebox
 import random
@@ -146,11 +145,6 @@ okno_gry.bind('d',keypress)
 okno_gry.bind('a', keypress)
 okno_gry.bind('w', keypress)
 okno_gry.bind('s', keypress)
-# wczytanie obrazów puzzli i stworzenie duszkow z poszczegolnymi puzzlami
-
-#puzzle_prawodol_zdj=PhotoImage(file='graphics/path/prawodol.png')
-#puzzle_prawodol=Label(okno_gry, image=puzzle_prawodol_zdj)
-#puzzle_prawodol.place(x=190, y=100)
 
 
 def capture(flag):
@@ -212,7 +206,7 @@ class tworzenie_puzzli:
 
 
 
-#wyswietlenie okienka z instrukcje gry
+# wyświetlanie okienka z instrukcją gry
 
 instrukcja = Button(okno_gry, text = "Instrukcja gry", command =  przycisk_instrukcja)
 instrukcja.pack(side=LEFT)
