@@ -34,6 +34,7 @@ game_overX = 120
 game_overY = 200
 
 def protag(x,y):
+    protag_Img.set_colorkey(0, 0)
     screen.blit(protag_Img,(x,y))
 
 def show_score(x,y):
