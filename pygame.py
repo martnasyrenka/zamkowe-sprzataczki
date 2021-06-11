@@ -1,3 +1,9 @@
+#1. elementy dotyczące puzzli (klasa Puzzel)
+# 1a każdy obiekt puzzel ma właściwości, które umożliwiają poruszanie się (cztery kierunki --> wasd)
+# 1b żeby umożliwić poruszanie się puzzlem, puzzel musi być zaznaczony (zaznaczony puzzel zmienia kolor)
+# 1c klikniecie w plansze odznacza zaznaczony puzzel
+#2. klasa Puzzle służąca do obsługiwania puzzli (dokładanie elementów)
+
 '''___________________________________________________________________________
 Wszystkie importy'''
 import pygame
@@ -29,7 +35,7 @@ tlo_zamek=PhotoImage(file="graphics/background/castle.png")
 tlo=Label(okno_gry, image=tlo_zamek)
 tlo.place(x=0,y=0)
 
-selected=-1
+global selected
 class Puzzel:
     def __init__(self,name, x, y, numer):
         self.name=name
@@ -40,23 +46,33 @@ class Puzzel:
         self.place(x,y)
         self.puzzel.bind("<ButtonRelease-1>", lambda event: self.click())
         self.numer=numer
-        
+        self.aktywny=0
+    
+
 
     def click(self):
-        print('super', self.x, self.y)
-        zdj=PhotoImage(file='graphics/path/'+self.name+'_pressed.png')
+        if self.aktywny==0:
+            print('super', self.x, self.y)
+            zdj=PhotoImage(file='graphics/path/'+self.name+'_pressed.png')
+            self.puzzel.configure(image=zdj)
+            self.puzzel.image = zdj
+            global selected
+            selected = self.numer
+            puzzle.zaznacz(self.numer)
+            self.aktywny=1
+    def odznacz(self):
+        zdj=PhotoImage(file='graphics/path/'+self.name+'.png')
         self.puzzel.configure(image=zdj)
         self.puzzel.image = zdj
-        selected=self.numer
-        puzzle.zaznacz(self.numer)
     def place(self, x, y):
         self.x=x
         self.y=y
         self.puzzel.place(x=x*50, y=y*50)
     def move(self, x, y):
-        self.x+=x
-        self.y+=y
-        self.puzzel.place(x=self.x*50, y=self.y*50)
+        if self.x+x>=2 and self.x+x<7 and self.y+y>=2 and self.y+y<7:
+            self.x+=x
+            self.y+=y
+            self.puzzel.place(x=self.x*50, y=self.y*50)
     def hoover(self, x, y):
         if self.x==x and self.y==y:
             zdj=PhotoImage(file='graphics/path/prosto_pressed.png')
@@ -80,8 +96,11 @@ class Puzzle:
 
     def zaznacz(self, numer):
         selected=numer
-    
-    
+
+    def odznacz_wszystko(self):
+        for i in range(len(self.p)):
+            if i!=selected:
+                self.p[i].odznacz()
 
     def przesun_w_prawo(self):
         if selected!=-1:
@@ -96,12 +115,12 @@ class Puzzle:
     def przesun_w_dol(self):
         if selected!=-1:
             print('przesun_w_dol()')
-            self.p[selected].move(0,-1)
+            self.p[selected].move(0,1)
 
     def przesun_w_gore(self):
         if selected!=-1:
             print('przesun_w_gore()')
-            self.p[selected].move(0,1)
+            self.p[selected].move(0,-1)
     
     def hoover(self, x, y):
         x0=x//50
@@ -128,19 +147,21 @@ puzzle.zaznacz(2)
 
 #wczytanie obrazów puzzli
 puzzle.append(Puzzel('prawodol', 4, 2,0))
-puzzle.append(Puzzel('prawogora', 4, 3,1))
-puzzle.append(Puzzel('lewogora', 4, 4,2))
-puzzle.append(Puzzel('prosto', 4, 5,3))
-puzzle.append(Puzzel('lewodol', 4, 6,4))
+puzzle.append(Puzzel('prawodol', 3, 2,1))
+puzzle.append(Puzzel('prawogora', 4, 3,2))
+puzzle.append(Puzzel('lewogora', 4, 4,3))
+puzzle.append(Puzzel('prosto', 4, 5,4))
+puzzle.append(Puzzel('prosto', 3, 5,5))
+puzzle.append(Puzzel('lewodol', 4, 6,6))
 
 
 #pobieranie współrzędnych kursora myszy
-def motion(event):
+def click(event):
  #   if do_capture:
-    x, y = event.x_root, event.y
-    print('{}, {}'.format(x, y))
-    #puzzle.hoover(x,y)
-okno_gry.bind('<Motion>', motion)
+    #x, y = event.x_root, event.y
+    #print('{}, {}'.format(x, y))
+    puzzle.odznacz_wszystko()
+okno_gry.bind('<ButtonRelease-1>', click)
 
 okno_gry.bind('d',keypress)
 okno_gry.bind('a', keypress)
