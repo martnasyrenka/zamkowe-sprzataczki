@@ -7,7 +7,6 @@
 '''___________________________________________________________________________
 Wszystkie importy'''
 import pygame
-#from game.digit_sqr import DigitSqr
 from  tkinter import *
 from tkinter import messagebox
 import random
@@ -167,11 +166,6 @@ okno_gry.bind('d',keypress)
 okno_gry.bind('a', keypress)
 okno_gry.bind('w', keypress)
 okno_gry.bind('s', keypress)
-# wczytanie obrazów puzzli i stworzenie duszkow z poszczegolnymi puzzlami
-
-#puzzle_prawodol_zdj=PhotoImage(file='graphics/path/prawodol.png')
-#puzzle_prawodol=Label(okno_gry, image=puzzle_prawodol_zdj)
-#puzzle_prawodol.place(x=190, y=100)
 
 
 def capture(flag):
@@ -218,22 +212,22 @@ class tworzenie_puzzli:
 
         return self.numery_puzzli
 
-    #def wyswietl_puzzle(self,numery_puzzli):
-        #zmienna_x = 1
-        #zmienna_y = 1
-        #puzzle = []
-        #for numer_puzzla in numery_puzzli:
-         #   puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
-          #  counter_x += 1
-           # if zmienna_x % 4 == 0:
-            #    zmienna_x = 1
-             #   zmienna_y += 1
+    def wyswietl_puzzle(self,numery_puzzli):
+        zmienna_x = 1
+        zmienna_y = 1
+        puzzle = []
+        for numer_puzzla in numery_puzzli:
+           puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
+           counter_x += 1
+           if zmienna_x % 4 == 0:
+               zmienna_x = 1
+               zmienna_y += 1
 
-        #return puzzle
+        return puzzle
 
 
 
-#wyswietlenie okienka z instrukcje gry
+# wyświetlanie okienka z instrukcją gry
 
 instrukcja = Button(okno_gry, text = "Instrukcja gry", command =  przycisk_instrukcja)
 instrukcja.pack(side=LEFT)
