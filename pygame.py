@@ -196,34 +196,35 @@ protag.place(x=200, y=400)
 tworzenie klasy puzzle'''
 
 
-class tworzenie_puzzli:
-    def __init__(self, okienko):
-        self.okno_gry = okienko
-        self.numery_puzzli = []
-        self.stworz_puzzle()
+#class tworzenie_puzzli:
+ #   def __init__(self, okienko):
+  #      self.okno_gry = okienko
+   #     self.numery_puzzli = []
+    #    self.stworz_puzzle()
 
-    def stworz_puzzle(self):
-        del self.numery_puzzli[:]
-        while len(self.numery_puzzli) != 12:
-            numer = random.randint(1, 12)
-            if numer not in self.numery_puzzli:
-                self.numery_puzzli.append(numer)
-        print (self.numery_puzzli)
+    #def stworz_puzzle(self):
+     #   del self.numery_puzzli[:]
+      #  while len(self.numery_puzzli) != 12:
+       #     numer = random.randint(1, 12)
+        #    if numer not in self.numery_puzzli:
+         #       self.numery_puzzli.append(numer)
+        #print (self.numery_puzzli)
 
-        return self.numery_puzzli
+        #return self.numery_puzzli
 
-    def wyswietl_puzzle(self,numery_puzzli):
-        zmienna_x = 1
-        zmienna_y = 1
-        puzzle = []
-        for numer_puzzla in numery_puzzli:
-           puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
-           counter_x += 1
-           if zmienna_x % 4 == 0:
-               zmienna_x = 1
-               zmienna_y += 1
+    #def wyswietl_puzzle(self,numery_puzzli):
+     #   zmienna_x = 1
+      
+    #  zmienna_y = 1
+     #   puzzle = []
+      #  for numer_puzzla in numery_puzzli:
+       #    puzzle.append(DigitSqr(self.screen, digit, 100 * counter_x, 100 * counter_y))
+        #   counter_x += 1
+         #  if zmienna_x % 4 == 0:
+          #     zmienna_x = 1
+           #    zmienna_y += 1
 
-        return puzzle
+        #return puzzle
 
 
 
