@@ -9,6 +9,6 @@ https://www.youtube.com/watch?v=hDu8mcAlY4E&t=1175s
 
 Materiały źródłowe dla grafik wykorzystanych w grze:
 
-https://opengameart.org/content/shooting-gallery
-
 https://www.flaticon.com
+
+https://opengameart.org/content/shooting-gallery
