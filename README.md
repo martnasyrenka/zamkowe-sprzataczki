@@ -6,3 +6,9 @@ Materiały źródłowe wykorzystane do stworzenia kodu gry:
 https://www.youtube.com/watch?v=FfWpgLFMI7w&t=3480s
 
 https://www.youtube.com/watch?v=hDu8mcAlY4E&t=1175s
+
+Materiały źródłowe dla grafik wykorzystanych w grze:
+
+https://opengameart.org/content/shooting-gallery
+
+https://www.flaticon.com
