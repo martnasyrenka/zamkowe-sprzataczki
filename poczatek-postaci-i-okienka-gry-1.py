@@ -2,6 +2,11 @@ import pygame
 import math
 from os import path
 import random
+import time
+
+clock = pygame.time.Clock()
+current_time = 0
+click_press_time = 0
 
 pygame.init()
 
@@ -67,10 +72,16 @@ class Trash(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = [pos_x,pos_y]
 
-trash_group = pygame.sprite.Group()
+#Dwie grupy pojawiającego się bałaganu
+trash_group1 = pygame.sprite.Group()
 for trash in range(5):
-    new_trash = Trash(random.randrange(50,400),random.randrange(50,400))
-    trash_group.add(new_trash)
+    new_trash1 = Trash(random.randrange(50,400),random.randrange(50,400))
+    trash_group1.add(new_trash1)
+
+trash_group2 = pygame.sprite.Group()
+for trash in range(5):
+    new_trash2 = Trash(random.randrange(50,400),random.randrange(50,400))
+    trash_group2.add(new_trash2)
     
 #Klasa miotły (gracza/myszki)
 class Broom(pygame.sprite.Sprite):
@@ -111,17 +122,25 @@ while running:
                 protagX_change = -10
                 if collision:
                     protagX_change = 0
+                if len(trash_group1) > 0 or len(trash_group2) > 0:
+                    protagX_change = 0
             if event.key == pygame.K_RIGHT:
                 protagX_change = 10
                 if collision:
+                    protagX_change = 0
+                if len(trash_group1) > 0 or len(trash_group2) > 0:
                     protagX_change = 0
             if event.key == pygame.K_UP:
                 protagY_change = -10
                 if collision:
                     protagY_change = 0
+                if len(trash_group1) > 0 or len(trash_group2) > 0:
+                    protagY_change = 0
             if event.key == pygame.K_DOWN:
                 protagY_change = 10
                 if collision:
+                    protagY_change = 0
+                if len(trash_group1) > 0 or len(trash_group2) > 0:
                     protagY_change = 0
         if event.type == pygame.KEYUP:
             if event.type == pygame.KEYDOWN or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
@@ -152,10 +171,18 @@ while running:
         show_score(scoreX,scoreY)
         show_game_over(game_overX,game_overY)
     
-    #Aktywacja bałaganu/protagonisty etc.
-    trash_group.draw(screen)
+    current_time = pygame.time.get_ticks()
+    
+    #Aktywacja bałaganu co jakiś czas, który gracz musi posprzątać za pomocą myszki (inaczej nie może się ruszyć protagonistą za pomocą strzałek)
+    if current_time - click_press_time > 6000:
+        trash_group1.draw(screen)
+    if current_time - click_press_time > 15000:
+        trash_group2.draw(screen)
+    
+    #Aktywacja gracza/protagonisty etc.
     broom_group.draw(screen)
     broom_group.update()
     protag(protagX,protagY)
 
-    pygame.display.update()
+    pygame.display.flip()
+    clock.tick(60)
