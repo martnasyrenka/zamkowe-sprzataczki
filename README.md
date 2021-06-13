@@ -9,6 +9,8 @@ https://www.youtube.com/watch?v=hDu8mcAlY4E&t=1175s
 
 https://www.dreamincode.net/forums/topic/96312-restarting-a-program/
 
+https://eng.libretexts.org/Bookshelves/Computer_Science/Book%3A_Making_Games_with_Python_and_Pygame_(Sweigart)/03%3A_Pygame_Basics/3.22%3A_Playing_Sounds
+
 Materiały źródłowe dla grafik wykorzystanych w grze:
 
 https://www.flaticon.com
