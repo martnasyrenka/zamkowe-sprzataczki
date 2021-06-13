@@ -239,6 +239,7 @@ tworzenie klasy puzzle'''
 instrukcja = Button(okno_gry, text = "Instrukcja gry", command =  przycisk_instrukcja)
 instrukcja.pack(side=LEFT)
 autorki = Button(okno_gry, text = 'Autorki', command = przycisk_authors)
+autorki.pack()
 
 
 okno_gry.mainloop()
