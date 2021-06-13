@@ -49,7 +49,7 @@ def protag(x,y):
     screen.blit(protag_Img,(x,y))
 
 def show_score(x,y):
-    score = font.render("You've cleaned the room!", True, (0,0,0))
+    score = font.render("You've cleaned the room!\nYour score is:", score_value, True, (0,0,0))
     screen.blit(score, (x,y))
  
 #health bar
@@ -195,6 +195,10 @@ while running:
     if current_health<=0:
         current_health = 0
         show_game_over(game_overX, game_overY)
+    if score_value<=0:
+        score_value = 0
+        show_game_over(game_overX, game_overY)
+        
     
     current_time = pygame.time.get_ticks()
     
