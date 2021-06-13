@@ -18,6 +18,8 @@ Wszystkie funkcje'''
 def przycisk_instrukcja():
     messagebox.showinfo("Instrukcja gry",'Witamy w naszej grze!\n\nTwoim celem jest:\n  obrócenie ścieżki tak, by dało się po niej przejść; \n  posprzątanie jej; \n  ucieczka przed lawą. \n\nZaznaczanie puzzli: kliknięcie myszką\n    UWAGA! Po kliknięciu kolejnego puzzla NIE MOŻESZ\n    wrócić do obracania poprzedniego!\nObrót puzzli: klawisze WSAD\nSprzątanie: kliknięcie myszką\n    UWAGA! Jeśli nie sprzątniesz, nie ruszysz się dalej\n    postacią!\nSterowanie postacią: strzałki\n\nW górnym polu ekranu zobaczysz Twój pasek zdrowia.\nPośpiesz się! Zmniejsza się szybciej niż byś chciał!')
 
+def przycisk_authors():
+    messagebox.showinfo('Autorki', text = 'Freaking awesome code authors:\nNatalia Szantar\nKornelia Winiarska\nMartna Świątek\nPatrycja Lelujko\n\n\nFreaking awesome concept authors:\nNatalia Szantar\nKornelia Winiarska\nMartna Świątek\nPatrycja Lelujko\n\n\nFreaking awesome graphic character designer:\nKornelia Winiarska\n\n\nNot really freaking awesome music themes performer:\nMartna Świątek')
 
 '''___________________________________________________________________________
 okono gry'''
@@ -236,6 +238,7 @@ tworzenie klasy puzzle'''
 
 instrukcja = Button(okno_gry, text = "Instrukcja gry", command =  przycisk_instrukcja)
 instrukcja.pack(side=LEFT)
+autorki = Button(okno_gry, text = 'Autorki', command = przycisk_authors)
 
 
 okno_gry.mainloop()
