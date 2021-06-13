@@ -132,12 +132,16 @@ def keypress(event):
     if event.char == 'd':
         print('keypress()')
         puzzle.przesun_w_prawo()
+        move_value += 1
     elif event.char == 'a':
         puzzle.przesun_w_lewo()
+        move_value += 1
     elif event.char=='w':
         puzzle.przesun_w_gore()
+        move_value += 1
     elif event.char=='s':
         puzzle.przesun_w_dol()
+        move_value += 1
     else:
         pass
 
