@@ -36,3 +36,4 @@ checking.pack(side=BOTTOM)
 
 #w takim razie na dole ofc
 rungame()
+
