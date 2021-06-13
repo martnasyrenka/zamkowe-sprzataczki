@@ -129,28 +129,40 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 protagX_change = -10
+                move_value += 1
                 if collision:
                     protagX_change = 0
+                    move_value += 1
                 if len(trash_group1) > 0 or len(trash_group2) > 0:
                     protagX_change = 0
+                    move_value += 1
             if event.key == pygame.K_RIGHT:
                 protagX_change = 10
+                move_value += 1
                 if collision:
                     protagX_change = 0
+                    move_value += 1
                 if len(trash_group1) > 0 or len(trash_group2) > 0:
                     protagX_change = 0
+                    move_value += 1
             if event.key == pygame.K_UP:
                 protagY_change = -10
+                move_value += 1
                 if collision:
                     protagY_change = 0
+                    move_value += 1
                 if len(trash_group1) > 0 or len(trash_group2) > 0:
                     protagY_change = 0
+                    move_value += 1
             if event.key == pygame.K_DOWN:
                 protagY_change = 10
+                move_value += 1
                 if collision:
                     protagY_change = 0
+                    move_value += 1
                 if len(trash_group1) > 0 or len(trash_group2) > 0:
                     protagY_change = 0
+                    move_value += 1
         if event.type == pygame.KEYUP:
             if event.type == pygame.KEYDOWN or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 protagX_change = 0
@@ -159,6 +171,7 @@ while running:
         #Sprzątanie za pomocą kliknięcia myszki
         if event.type == pygame.MOUSEBUTTONDOWN:
             broom.cleaning()
+            move_value += 1
 
         protagX += protagX_change
         protagY += protagY_change
