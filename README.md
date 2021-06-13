@@ -13,8 +13,18 @@ https://eng.libretexts.org/Bookshelves/Computer_Science/Book%3A_Making_Games_wit
 
 https://www.youtube.com/watch?v=pUEZbUAMZYA&t=728s
 
+https://www.youtube.com/watch?v=Fp1dudhdX8k
+
 Materiały źródłowe dla grafik wykorzystanych w grze:
 
 https://www.flaticon.com
 
 https://opengameart.org/content/shooting-gallery
+
+Oryginały piosenek użytych w grze:
+
+https://www.youtube.com/watch?v=_CL6n0FJZpk
+
+https://www.youtube.com/watch?v=4N3N1MlvVc4
+
+https://www.youtube.com/watch?v=r3gXdYJwrOw
