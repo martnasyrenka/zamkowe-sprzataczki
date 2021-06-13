@@ -1,10 +1,5 @@
 from tkinter import *
-
-#moja propozycja zrobienia z pętli running funkcji
-def rungame():
-    running = True
-    while running:
-        screen.blit(background_Img,(0,0))
+#mamy chyba gdzieś import time
 
 #moja propozycja na wrzucenie tego? bo nie znalazłam komendy jako tako game over
 def show_game_over(x,y):
@@ -34,5 +29,4 @@ want_restart_no.pack(side=RIGHT)
 checking = Button(restart_game, text = 'OK', command = restarting_game)
 checking.pack(side=BOTTOM)
 
-#w takim razie na dole ofc
-rungame()
+
