@@ -14,6 +14,7 @@ want_restart = IntVar()
 #funkcja restart
 def restarting_game():
     if want_restart == 1:
+        win_theme.stop() or loose_theme.stop()
         running = True
     else:
         running = False
