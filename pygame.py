@@ -16,7 +16,7 @@ import random
 Wszystkie funkcje'''
 
 def przycisk_instrukcja():
-    messagebox.showinfo("Instrukcja gry","Gra zamkowe sprzataczki dzieli sie na 3 etapy:\n W pierwszym etapie trzeba ułożyć puzzle w taki sposób aby tworzyły spójną ścieżkę. \n Następnie poruszając się za pomocą strzałek należy przejść postacią po ścieżce\n przez zamek do miejsca docelowego, zanim zapadnie się podłoga.")
+    messagebox.showinfo("Instrukcja gry",'Witamy w naszej grze!\n\nTwoim celem jest:\n  obrócenie ścieżki tak, by dało się po niej przejść; \n  posprzątanie jej; \n  ucieczka przed lawą. \n\nZaznaczanie puzzli: kliknięcie myszką\n    UWAGA! Po kliknięciu kolejnego puzzla NIE MOŻESZ\n    wrócić do obracania poprzedniego!\nObrót puzzli: klawisze WSAD\nSprzątanie: kliknięcie myszką\n    UWAGA! Jeśli nie sprzątniesz, nie ruszysz się dalej\n    postacią!\nSterowanie postacią: strzałki\n\nW górnym polu ekranu zobaczysz Twój pasek zdrowia.\nPośpiesz się! Zmniejsza się szybciej niż byś chciał!')
 
 
 '''___________________________________________________________________________
