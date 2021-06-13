@@ -170,6 +170,7 @@ while running:
     if collision:
         show_score(scoreX,scoreY)
         show_game_over(game_overX,game_overY)
+        amount = 0
     
     current_time = pygame.time.get_ticks()
     
