@@ -7,6 +7,8 @@ https://www.youtube.com/watch?v=FfWpgLFMI7w&t=3480s
 
 https://www.youtube.com/watch?v=hDu8mcAlY4E&t=1175s
 
+https://www.dreamincode.net/forums/topic/96312-restarting-a-program/
+
 Materiały źródłowe dla grafik wykorzystanych w grze:
 
 https://www.flaticon.com
